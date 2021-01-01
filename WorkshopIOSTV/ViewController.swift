@@ -43,10 +43,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        if segue.identifier == "mSegue" {
+            let param = sender as! String
+            let destination = segue.destination as! DetailsViewController
+            destination.movieName = param
+        }
+    }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let movie = data[indexPath.row]
+        performSegue(withIdentifier: "mSegue", sender: movie)
+        
+    }
     
     
+
     
     
     
